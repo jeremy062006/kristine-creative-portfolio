@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kristine Pauline | Creative Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark background */
+            color: #d1d5db; /* Light gray text */
+        }
+        /* Custom scrollbar for a more modern look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #6366f1;
+            transition: width .3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .modal-enter {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        .modal-leave {
+            animation: fadeOut 0.3s ease-in forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.95); }
+        }
+
+        #modal-content {
+            display: grid; 
+            grid-template-rows: minmax(0, 1fr) auto;
+            overflow: hidden;
+        }
+        #media-container {
+            position: relative;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #description-container {
+           overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-white">Kristine Pauline</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-300 hover:text-white transition-colors duration-300 active" data-section="home">Home</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors duration-300" data-section="about">About</a>
+                <a href="#portfolio" class="nav-link text-gray-300 hover:text-white transition-colors duration-300" data-section="portfolio">Portfolio</a>
+                <a href="#resume" class="nav-link text-gray-300 hover:text-white transition-colors duration-300" data-section="resume">Resume</a>
+                <a href="#certificates" class="nav-link text-gray-300 hover:text-white transition-colors duration-300" data-section="certificates">Certificates</a>
+                <a href="#recommendations" class="nav-link text-gray-300 hover:text-white transition-colors duration-300" data-section="recommendations">Recommendations</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors duration-300" data-section="contact">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#home" class="block py-2 text-gray-300 hover:text-white">Home</a>
+            <a href="#about" class="block py-2 text-gray-300 hover:text-white">About</a>
+            <a href="#portfolio" class="block py-2 text-gray-300 hover:text-white">Portfolio</a>
+            <a href="#resume" class="block py-2 text-gray-300 hover:text-white">Resume</a>
+            <a href="#certificates" class="block py-2 text-gray-300 hover:text-white">Certificates</a>
+            <a href="#recommendations" class="block py-2 text-gray-300 hover:text-white">Recommendations</a>
+            <a href="#contact" class="block py-2 text-gray-300 hover:text-white">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="min-h-screen flex items-center bg-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-10">
+                    <img src="Cream and Brown Minimalist Professional Resume.jpg" alt="Kristine Yabut" class="w-48 h-48 md:w-46 md:h-56 rounded-full object-cover border-4 border-indigo-500 shadow-lg">
+                    <div class="text-center md:text-left">
+                        <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">Kristine Pauline Yabut</h1>
+                        <p class="text-lg md:text-xl text-gray-400 mt-4 max-w-xl">College Instructor based in Butuan City.</p>
+                        <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                            <a href="https://www.instagram.com/krstnplnybt/" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg></a>
+                            <a href="https://www.facebook.com/kristine.pauline.2024" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">About Me</h2>
+                <div class="max-w-3xl mx-auto text-center text-gray-300 text-lg leading-relaxed">
+                    <p class="mb-4">I am a recent graduate with a Bachelor of Secondary Education, major in Filipino, and I am excited to begin my journey as a teacher. Throughout my studies, I have developed a strong foundation in teaching strategies, communication, and classroom management that I am eager to apply in a real school setting.
+
+<br><br>During my practice teaching, I discovered how fulfilling it is to guide students in their learning journey. I enjoyed seeing their growth and confidence improve as they understood lessons and expressed themselves more freely. Those experiences strengthened my passion for teaching and inspired me to continue improving as an educator.
+
+<br><br>I am committed to creating a classroom that is welcoming, supportive, and engaging for all learners. My goal is to make learning Filipino both meaningful and enjoyable, helping students appreciate the language and culture while developing essential skills for the future.            </div>
+        </section>
+
+        <section id="portfolio" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">My Experiences</h2>
+                
+                <div id="filter-buttons" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
+                    <button class="filter-btn active bg-indigo-600 text-white px-4 py-2 rounded-md transition-all duration-300" data-filter="all">All</button>
+                </div>
+
+                <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    </div>
+            </div>
+        </section>
+
+        <section id="resume" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">My Resume</h2>
+                <div class="max-w-4xl mx-auto flex flex-col items-center gap-8">
+                    <div class="w-full border-4 border-gray-700 rounded-lg overflow-hidden shadow-lg">
+                         <img src="Cream and Brown Minimalist Professional Resume (1).jpg" alt="Resume Preview" class="w-full">
+                    </div>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-3">My Application Letter</h2>
+                <div class="max-w-4xl mx-auto flex flex-col items-center gap-8">
+                    <div class="w-full border-4 border-gray-700 rounded-lg overflow-hidden shadow-lg">
+                         <img src="Greyscale Photo Modern Student Internship Cover Letter.jpg" alt="Resume Preview" class="w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">Certificates</h2>
+                <div id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    </div>
+            </div>
+        </section>
+
+        <section id="recommendations" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">Recommendations</h2>
+                <div id="recommendations-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">Get In Touch</h2>
+                <div class="max-w-lg mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
+                    <form id="contact-form" action="https://formspree.io/f/xovnpqyp" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-300 mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:border-indigo-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:border-indigo-500" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:border-indigo-500" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-md transition-colors duration-300 w-full">Send Message</button>
+                        </div>
+                    </form>
+                    <p id="form-status" class="text-center mt-4"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 py-6">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 Kristine Yabut || Gemini. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-[60] hidden">
+        <div id="modal-content" class="bg-gray-800 text-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-2xl relative">
+            </div>
+    </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // =================================================================
+    // =========== 🚀 START EDITING HERE! 🚀 ==========================
+    // =================================================================
+    const portfolioData = [
+        {
+            id: 1,
+            title: "College Instructor",
+            category: "teaching",
+            categoryLabel: "Teaching",
+            thumbnail: "Gemini_Generated_Image_snui21snui21snui.png",
+            images: [
+                "Gemini_Generated_Image_snui21snui21snui.png"
+            ],
+            description: "Delivering a classroom presentation during my practice teaching. I am explaining a lesson to a group of students using visual aids and interactive discussion. This moment reflects my confidence in teaching, my ability to communicate effectively, and my passion for creating an engaging and supportive learning environment."
+        },
+    ];
+
+    // ❗ ACTION REQUIRED: Add your certificate details here.
+    // Use the same structure as the portfolioData. The modal will open automatically.
+    const certificatesData = [
+        {
+            id: 1,
+            title: "Agroforestry Training Program",
+            categoryLabel: "Agroforestry National Certificate",
+            thumbnail: "Gemini_Generated_Image_ecooliecooliecoo.png", // Path to a smaller thumbnail image
+            images: ["Gemini_Generated_Image_ecooliecooliecoo.png"],     // Path to the full-size certificate image
+            description: "This certificate validates competency in various multimedia arts disciplines including graphic design, 2D/3D animation, and video production, meeting national standards."
+        },
+        {
+            id: 2,
+            title: "Research Presentation",
+            categoryLabel: "Research",
+            thumbnail: "Gemini_Generated_Image_bty47ibty47ibty4.png",
+            images: ["Gemini_Generated_Image_c9m23ec9m23ec9m2.png"],
+            description: "Completed an intensive course on advanced video editing techniques, color grading, and audio mixing using Adobe Premiere Pro."
+        },
+        {
+            id: 3,
+            title: "Sustainable Agriculture Workshop",
+            categoryLabel: "Sustainable",
+            thumbnail: "Gemini_Generated_Image_c9m23ec9m23ec9m2.png",
+            images: ["Gemini_Generated_Image_c9m23ec9m23ec9m2.png"],
+            description: "Certificate of completion for a hands-on workshop covering modern web design principles, including responsive design with HTML5, CSS3, and JavaScript."
+        },
+    ];
+
+    // ❗ ACTION REQUIRED: Add your recommendations/testimonials here.
+    const recommendationsData = [
+        {
+            id: 1,
+            quote: "Kristine’s passion for teaching and connecting with students is remarkable. She has a natural ability to make lessons both engaging and meaningful. A truly inspiring educator in the making.",
+            name: "Jane Doe",
+            title: "Marketing Director, Creative Learning Academy"
+        },
+        {
+            id: 2,
+            quote: "We had the pleasure of seeing Kristine teach during her practice teaching, and she exceeded all expectations. Her ability to create a supportive and lively classroom atmosphere left a lasting impression.",
+            name: "John Smith",
+            title: "Cooperating Teacher, City High School"
+        },
+        {
+            id: 3,
+            quote: "Kristine’s dedication and professionalism stand out. She consistently prepared well-thought-out lessons, showed genuine care for her students, and always welcomed feedback for improvement. Highly commendable!",
+            name: "Emily White",
+            title: "Head Teacher, Filipino Department"
+        },
+    ];
+
+    // =================================================================
+    // =========== 🛑 STOP EDITING HERE! 🛑 ===========================
+    // =================================================================
+
+    const portfolioGrid = document.getElementById('portfolio-grid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectModal = document.getElementById('project-modal');
+    const modalContent = document.getElementById('modal-content');
+    const certificatesGrid = document.getElementById('certificates-grid');
+    const recommendationsGrid = document.getElementById('recommendations-grid');
+
+    let currentlyDisplayedProjects = [];
+    let currentlyDisplayedCertificates = [];
+
+    const renderPortfolio = (filter = 'all') => {
+        portfolioGrid.innerHTML = '';
+        currentlyDisplayedProjects = portfolioData.filter(project => 
+            filter === 'all' || project.category === filter
+        );
+
+        currentlyDisplayedProjects.forEach((project, index) => {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'portfolio-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer';
+            projectCard.dataset.index = index;
+            projectCard.innerHTML = `
+                <img src="${project.thumbnail}" alt="${project.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-xl font-bold text-white text-center">${project.title}</h3>
+                    <span class="text-sm text-gray-300 mt-1">${project.categoryLabel}</span>
+                </div>
+            `;
+            portfolioGrid.appendChild(projectCard);
+        });
+    };
+    
+    const renderCertificates = () => {
+        certificatesGrid.innerHTML = '';
+        currentlyDisplayedCertificates = certificatesData;
+
+        currentlyDisplayedCertificates.forEach((cert, index) => {
+            const certCard = document.createElement('div');
+            certCard.className = 'certificate-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer';
+            certCard.dataset.index = index;
+            certCard.innerHTML = `
+                <img src="${cert.thumbnail}" alt="${cert.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-xl font-bold text-white text-center">${cert.title}</h3>
+                    <span class="text-sm text-gray-300 mt-1">${cert.categoryLabel}</span>
+                </div>
+            `;
+            certificatesGrid.appendChild(certCard);
+        });
+    };
+    
+    const renderRecommendations = () => {
+        recommendationsGrid.innerHTML = '';
+        recommendationsData.forEach(rec => {
+            const recCard = document.createElement('div');
+            recCard.className = 'bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col';
+            recCard.innerHTML = `
+                <p class="text-gray-300 italic flex-grow">"${rec.quote}"</p>
+                <div class="mt-4 pt-4 border-t border-gray-700">
+                    <p class="font-bold text-white">${rec.name}</p>
+                    <p class="text-sm text-indigo-400">${rec.title}</p>
+                </div>
+            `;
+            recommendationsGrid.appendChild(recCard);
+        });
+    };
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active', 'bg-indigo-600');
+                btn.classList.add('bg-gray-700');
+            });
+            button.classList.add('active', 'bg-indigo-600');
+            button.classList.remove('bg-gray-700');
+            renderPortfolio(button.dataset.filter);
+        });
+    });
+
+    let currentImageIndex = 0;
+
+    const updateModalContent = (project) => {
+        currentImageIndex = 0;
+        let mediaAreaHTML = '';
+
+        if (project.gdriveVideoId) {
+            mediaAreaHTML = `
+                <div id="media-container">
+                    <iframe 
+                        src="https://drive.google.com/file/d/${project.gdriveVideoId}/preview" 
+                        class="w-full max-h-full aspect-video" 
+                        frameborder="0" 
+                        allow="autoplay; fullscreen" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            `;
+        } else if (project.images && project.images.length > 0) {
+            const controlsHTML = project.images.length > 1 ? `
+                <button id="modal-prev-btn" class="absolute top-1/2 left-2 md:left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-all z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <button id="modal-next-btn" class="absolute top-1/2 right-2 md:right-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-all z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </button>
+            ` : '';
+             const counterHTML = project.images.length > 1 ? `<div id="image-counter" class="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded">${currentImageIndex + 1} / ${project.images.length}</div>` : '';
+
+            mediaAreaHTML = `
+                <div id="media-container">
+                    <img id="modal-image" src="${project.images[0]}" class="w-full h-full object-contain" alt="Project image 1">
+                    ${controlsHTML}
+                    ${counterHTML}
+                </div>
+            `;
+        }
+        
+        const descriptionAreaHTML = `
+            <div id="description-container" class="p-6 md:p-8 bg-gray-800">
+                <h3 class="text-2xl font-bold mb-2">${project.title}</h3>
+                <span class="inline-block bg-indigo-500 text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">${project.categoryLabel}</span>
+                <p class="text-gray-300 leading-relaxed">${project.description}</p>
+            </div>
+        `;
+
+        modalContent.innerHTML = `
+            <button id="close-modal-btn" class="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            ${mediaAreaHTML}
+            ${project.description ? descriptionAreaHTML : ''}
+        `;
+        
+        projectModal.classList.remove('hidden');
+        projectModal.classList.add('modal-enter');
+        document.body.style.overflow = 'hidden';
+
+        if (project.images && project.images.length > 1) {
+            const modalImage = document.getElementById('modal-image');
+            const counter = document.getElementById('image-counter');
+            
+            const updateImage = () => {
+                modalImage.src = project.images[currentImageIndex];
+                if(counter) counter.textContent = `${currentImageIndex + 1} / ${project.images.length}`;
+            };
+
+            document.getElementById('modal-next-btn').addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % project.images.length;
+                updateImage();
+            });
+            document.getElementById('modal-prev-btn').addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + project.images.length) % project.images.length;
+                updateImage();
+            });
+        }
+    };
+    
+    const openModal = (project) => {
+      updateModalContent(project);
+      document.getElementById('close-modal-btn').addEventListener('click', closeModal);
+      projectModal.addEventListener('click', (e) => {
+          if (e.target === projectModal) closeModal();
+      });
+    };
+    
+    const closeModal = () => {
+        const iframe = modalContent.querySelector('iframe');
+        if (iframe) {
+            iframe.src = "";
+        }
+
+        projectModal.classList.add('modal-leave');
+        setTimeout(() => {
+            projectModal.classList.add('hidden');
+            projectModal.classList.remove('modal-enter', 'modal-leave');
+            modalContent.innerHTML = '';
+            document.body.style.overflow = 'auto';
+        }, 300);
+    };
+
+    portfolioGrid.addEventListener('click', (e) => {
+        const card = e.target.closest('.portfolio-item');
+        if (card) {
+            const projectIndex = parseInt(card.dataset.index, 10);
+            openModal(currentlyDisplayedProjects[projectIndex]);
+        }
+    });
+    
+    certificatesGrid.addEventListener('click', (e) => {
+        const card = e.target.closest('.certificate-item');
+        if (card) {
+            const certIndex = parseInt(card.dataset.index, 10);
+            openModal(currentlyDisplayedCertificates[certIndex]);
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!projectModal.classList.contains('hidden')) {
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowRight') document.getElementById('modal-next-btn')?.click();
+            if (e.key === 'ArrowLeft') document.getElementById('modal-prev-btn')?.click();
+        }
+    });
+
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => header.classList.toggle('shadow-lg', window.scrollY > 50));
+    
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('main section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === entry.target.id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, { rootMargin: '-30% 0px -70% 0px' });
+    sections.forEach(section => observer.observe(section));
+
+    const form = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        formStatus.textContent = 'Sending...';
+        formStatus.className = 'text-center mt-4 text-blue-400';
+        fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                formStatus.textContent = "Thanks for your message! I'll be in touch soon.";
+                formStatus.className = 'text-center mt-4 text-green-400';
+                form.reset();
+            } else {
+                response.json().then(data => {
+                    formStatus.textContent = data.errors ? data.errors.map(e => e.message).join(', ') : "Oops! There was a problem.";
+                    formStatus.className = 'text-center mt-4 text-red-400';
+                });
+            }
+        }).catch(error => {
+            formStatus.textContent = "Oops! There was a problem submitting your form.";
+            formStatus.className = 'text-center mt-4 text-red-400';
+        });
+    }
+    form.addEventListener("submit", handleSubmit);
+
+    // Initial renders
+    renderPortfolio();
+    renderCertificates();
+    renderRecommendations();
+});
+</script>
+
+</body>
+</html>
